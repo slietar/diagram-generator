@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Diagram generator</title>
+    <link href="styles.css" rel="stylesheet">
+    <script type="module" src="src/app.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1>Diagram generator</h1>
+      <form>
+        <label>
+          <div>File</div>
+          <input type="file" accept=".dxf" name="file">
+        </label>
+        <label>
+          <div>Collision algorithm</div>
+          <select name="collision">
+            <option value="aabb">AABB</option>
+            <!-- <option value="polygon">Polygon (SAT)</option> -->
+          </select>
+        </label>
+        <label>
+          <div>Tolerance when grouping polylines</div>
+          <input type="text" value="5" name="tolerance">
+        </label>
+        <label>
+          <div>Minimum group size (0 to disable)</div>
+          <input type="text" value="1100" name="minGroupSize">
+        </label>
+        <label>
+          <div>Maximum group size (0 to disable)</div>
+          <input type="text" value="0" name="maxGroupSize">
+        </label>
+        <label>
+          <div>Layer render order (empty to use default)</div>
+          <input type="text" value="" name="layerRenderOrder" placeholder="e.g. 2,0,1">
+        </label>
+        <label>
+          <div>Output width</div>
+          <input type="number" value="1000" name="outputWidth">
+        </label>
+        <label>
+          <div>Vector graphics</div>
+          <input type="checkbox" name="vectorGraphics">
+        </label>
+        <button>Compute</button>
+      </form>
+      <pre></pre>
+      <div id="output"></div>
+    </main>
+  </body>
+</html>

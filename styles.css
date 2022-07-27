@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+body {
+  display: flex;
+  margin: initial;
+
+  font-family: ui-serif, system-ui, sans-serif;
+}
+
+main {
+  margin: 0 auto 2rem auto;
+  width: 600px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+}
+
+label {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+}
+
+label div {
+  font-weight: 500;
+}
+
+button {
+  margin-top: 1rem;
+}
+
+pre {
+  height: 300px;
+  overflow-y: auto;
+
+  padding: 1rem;
+  border: 2px solid #ddd;
+}
+
+canvas {
+  max-width: 100%;
+}
+
+#output {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  margin: 2rem -300px;
+}
+
+canvas, svg {
+  max-height: 80vh;
+  margin-bottom: 1rem;
+
+  border: 1px solid #000;
+}
+
+path {
+  transition: fill 0s 200ms;
+}
+
+svg._selected path {
+  fill: #000;
+}
+
+g._active path {
+  fill: red;
+}
