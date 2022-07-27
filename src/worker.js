@@ -30,16 +30,23 @@ async function compute(options, log) {
   await log('Loaded input');
   await log(`Found ${layers.length} layers and ${output.polylines.length} polylines`);
 
+  let width = output.bbox.max.x - output.bbox.min.x;
+  let height = output.bbox.max.y - output.bbox.min.y;
+
+  log(`Width: ${width}`);
+  log(`Height: ${height}`);
+
 
   // -- Processing ------------------------------------------------------------
 
   let layerGroups = [];
 
-  for (let layerIndex = 0; layerIndex < layers.length; layerIndex++) {
+  for (let layerIndex = 0; layerIndex < (options.layerMerge ?? layers).length; layerIndex++) {
     await log(`Processing layer ${layerIndex}`);
 
-    // if (layerIndex !== 2) continue;
-    let layer = layers[layerIndex];
+    let layer = options.layerMerge
+      ? options.layerMerge[layerIndex].flatMap((index) => layers[index])
+      : layers[layerIndex];
     let bboxes = layer.map(collision.findBbox);
 
     let groups = [];
@@ -93,11 +100,16 @@ async function compute(options, log) {
     await log(`Done processing layer ${layerIndex}`);
   }
 
+  // if (options.layerMerge) {
+  //   await log('Merging layers');
+
+  //   layerGroups = options.layerMerge.map((layerIndices) => {
+  //     return layerIndices.flatMap((index) => layerGroups[index]);
+  //   });
+  // }
+
 
   // -- Tracing -------------------------------------------------------------
-
-  let width = output.bbox.max.x - output.bbox.min.x;
-  let height = output.bbox.max.y - output.bbox.min.y;
 
   let outputWidth = options.outputWidth;
   let outputHeight = outputWidth / width * height;

@@ -10,11 +10,14 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
 
   let data = new FormData(event.currentTarget);
+
+  let layerMerge = data.get('layerMerge');
   let layerRenderOrder = data.get('layerRenderOrder');
 
   let options = {
     colorMode: true,
     file: data.get('file'),
+    layerMerge: (layerMerge ? layerMerge.split(';').map((s) => s.split(',').map((k) => parseInt(k))) : null),
     layerRenderOrder: (layerRenderOrder ? layerRenderOrder.split(',').map((s) => parseInt(s)) : null),
     minGroupSize: parseFloat(data.get('minGroupSize')),
     maxGroupSize: parseFloat(data.get('maxGroupSize')),
