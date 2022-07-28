@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "npx parcel build index.html --no-source-maps --public-url ./"
+  },
   "dependencies": {
     "canvas": "^2.8.0",
     "comlink": "^4.3.1",
